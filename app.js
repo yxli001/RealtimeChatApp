@@ -4,8 +4,6 @@ const bodyParser = require("body-parser");
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 
-var port = 3000 || process.env.PORT;
-
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,6 +42,6 @@ io.on("connection", (socket) => {
 	});
 });
 
-http.listen(port, () => {
+http.listen(process.env.PORT || 3000, () => {
 	console.log("Server running on port 3000...");
 });
