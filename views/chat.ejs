@@ -1,0 +1,35 @@
+<%- include("partials/header") %>
+
+<ul id="messages" class="scrollable"></ul>
+<form action="" class="chat-form">
+	<input id="m" autocomplete="off" autofocus class="form-control" />
+	<button type="submit" class="btn btn-success">Send</button>
+</form>
+<script src="socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(function () {
+		const socket = io();
+		$("form").submit(function (e) {
+			e.preventDefault(); // prevents page reloading
+			if ($.trim($("#m").val()) != "") {
+				socket.emit("chat message", {
+					msg: $("#m").val(),
+					user: "<%= user %>",
+				});
+			}
+			$("#m").val("");
+			return false;
+		});
+		socket.on("chat message", function ({ msg, user }) {
+			$("#messages").append(
+				$("<li>")
+					.append($("<small>").text(user).addClass("text-muted"))
+					.append($("<p>").text(msg))
+			);
+			$(document).scrollTop($(document).height());
+		});
+	});
+</script>
+
+<%- include("partials/footer") %>

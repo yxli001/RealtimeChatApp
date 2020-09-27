@@ -1,26 +1,24 @@
 <%- include("partials/header") %>
 
-<ul id="messages"></ul>
-<form action="">
-	<input id="m" autocomplete="off" autofocus/>
-	<button type="submit">Send</button>
-</form>
+<h2 class="text-center mt-3">
+	Welcome to Realtime Chat App, enter you username and begin chatting!
+</h2>
 
-<script src="socket.io/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script>
-    $(function () {
-      var socket = io();
-      $('form').submit(function(e){
-        e.preventDefault(); // prevents page reloading
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-      });
-    });
-</script>
+<form action="/" method="POST">
+	<div class="form-group">
+		<input
+			type="text"
+			name="username"
+			id="username"
+			class="form-control"
+			placeholder="Enter your username"
+            autofocus
+            required
+		/>
+	</div>
+	<div class="form-group">
+		<input type="submit" value="Join Chat" class="btn btn-outline-info" />
+	</div>
+</form>
 
 <%- include("partials/footer") %>
