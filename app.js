@@ -3,6 +3,8 @@ const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 
+var port = process.env.PORT || 8080;
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
@@ -16,6 +18,6 @@ io.on("connection", (socket) => {
 	});
 });
 
-http.listen(3000 || process.env.PORT, () => {
+http.listen(port, () => {
 	console.log("Server running on port 3000...");
 });
