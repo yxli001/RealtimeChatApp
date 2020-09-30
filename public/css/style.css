@@ -1,7 +1,11 @@
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+}
+
+body {
+	/* overflow: hidden; */
+	/* position: fixed; */
 }
 
 form {
@@ -16,11 +20,15 @@ form input[type="text"] {
 	width: 60%;
 }
 
+li p {
+	word-wrap: normal;
+}
+
 .chat-form {
-	padding: 3px;
+	padding: 5px;
 	position: fixed;
-	bottom: 10px;
-	width: 100vw;
+	bottom: 0;
+	width: 80%;
 }
 .chat-form input {
 	padding: 0.5rem 0.5rem;
@@ -34,6 +42,7 @@ form input[type="text"] {
 	padding: 0.5rem 0.5rem;
 	height: 3rem;
 	margin-bottom: 5px;
+	display: inline-block;
 }
 
 #messages {
@@ -44,58 +53,34 @@ form input[type="text"] {
 }
 #messages li {
 	border: 1px solid grey;
-	border-radius: 100px;
+	border-radius: 10px;
 	margin: 5px;
 	margin-top: 20px;
-	padding: 10px 20px;
+	padding: 8px 15px;
 }
 
-#wrapper {
-	overflow-x: hidden;
+.page-container {
+	overflow: hidden;
 }
 
-#sidebar-wrapper {
-	min-height: 93.6vh;
-	margin-left: -15rem;
-	-webkit-transition: margin 0.25s ease-out;
-	-moz-transition: margin 0.25s ease-out;
-	-o-transition: margin 0.25s ease-out;
-	transition: margin 0.25s ease-out;
+.left {
+	float: left;
+	width: 20%;
+	height: 93.9vh;
+	/* position: fixed; */
 }
 
-#sidebar-wrapper .sidebar-heading {
-	padding: 0.875rem 1.25rem;
-	font-size: 1.2rem;
+.right {
+	float: right;
+	width: 80%;
+	height: 90vh;
+	overflow-y: scroll;
 }
 
-#sidebar-wrapper .list-group {
-	width: 15rem;
+.users {
+	list-style: none;
 }
 
-#page-content-wrapper {
-	min-width: 100vw;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-	margin-left: 0;
-}
-
-@media (min-width: 768px) {
-	#sidebar-wrapper {
-		margin-left: 0;
-	}
-
-	#page-content-wrapper {
-		min-width: 0;
-		width: 100%;
-	}
-
-	#wrapper.toggled #sidebar-wrapper {
-		margin-left: -15rem;
-	}
-}
-
-.scrollable {
-	height: 80%;
-	overflow-y: auto;
+.username {
+	color: #0084db;
 }

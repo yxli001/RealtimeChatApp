@@ -1,34 +1,58 @@
 <%- include("partials/header") %>
 
-<ul id="messages" class="scrollable"></ul>
-<form action="" class="chat-form">
-	<input id="m" autocomplete="off" autofocus class="form-control" />
-	<button type="submit" class="btn btn-success">Send</button>
-</form>
+<div class="left bg-light scrollable">
+	<h2 class="ml-2 mt-2">Users:</h2>
+	<ul class="ml-3 mt-3 users"></ul>
+</div>
+
+<div class="right scrollable">
+	<ul id="messages" class=""></ul>
+	<form action="" class="chat-form bg-dark">
+		<input
+			id="m"
+			autocomplete="off"
+			autofocus
+			class="form-control"
+			placeholder="Message"
+		/>
+		<button type="submit" class="btn btn-success">Send</button>
+	</form>
+</div>
+
 <script src="socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-	$(function () {
-		const socket = io();
-		$("form").submit(function (e) {
-			e.preventDefault(); // prevents page reloading
-			if ($.trim($("#m").val()) != "") {
-				socket.emit("chat message", {
-					msg: $("#m").val(),
-					user: "<%= user %>",
-				});
-			}
-			$("#m").val("");
-			return false;
-		});
-		socket.on("chat message", function ({ msg, user }) {
-			$("#messages").append(
-				$("<li>")
-					.append($("<small>").text(user).addClass("text-muted"))
-					.append($("<p>").text(msg))
-			);
-			$(document).scrollTop($(document).height());
-		});
+	const socket = io({ transports: ["websocket"], upgrade: false });
+	socket.emit("username", "<%= user %>");
+	$("form").submit(function (e) {
+		e.preventDefault(); // prevents page reloading
+		if ($.trim($("#m").val()) != "") {
+			socket.emit("message", {
+				msg: $("#m").val(),
+				user: "<%= user %>",
+			});
+		}
+		$("#m").val("");
+		return false;
+	});
+	socket.on("chat message", function ({ msg, user, time }) {
+		$("#messages").append(
+			$("<li>")
+				.addClass("bg-light")
+				.append(
+					$("<small>")
+						.text(user + " ")
+						.addClass("username")
+				)
+				.append($("<small>").text(time))
+				.append($("<p>").text(msg))
+		);
+		$(document).scrollTop($(document).height());
+	});
+	socket.on("update users", function (users) {
+		document.querySelector(".users").innerHTML = `
+		${users.map((user) => `<li>${user.username}</li>`).join("")}
+	`;
 	});
 </script>
 
