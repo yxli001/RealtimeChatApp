@@ -23,7 +23,7 @@ socket.on("chat message", function ({ msg, user, time }) {
 			.append($("<small>").text(time))
 			.append($("<p>").text(msg))
 	);
-	$(document).scrollTop($(document).height());
+	$(".right").scrollTop($(".right").height());
 });
 socket.on("update users", function (users) {
 	document.querySelector(".users").innerHTML = `

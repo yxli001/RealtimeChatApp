@@ -5,7 +5,7 @@
 	<ul class="ml-3 mt-3 users"></ul>
 </div>
 
-<div class="right scrollable">
+<div class="right">
 	<ul id="messages" class=""></ul>
 	<form action="" class="chat-form bg-dark">
 		<input
@@ -47,7 +47,7 @@
 				.append($("<small>").text(time))
 				.append($("<p>").text(msg))
 		);
-		$(document).scrollTop($(document).height());
+		$(".right").scrollTop($("#messages").height());
 	});
 	socket.on("update users", function (users) {
 		document.querySelector(".users").innerHTML = `

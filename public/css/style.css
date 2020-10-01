@@ -3,11 +3,6 @@
 	padding: 0;
 }
 
-body {
-	/* overflow: hidden; */
-	/* position: fixed; */
-}
-
 form {
 	width: 30%;
 	margin: 0 auto;
@@ -49,7 +44,7 @@ li p {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 }
 #messages li {
 	border: 1px solid grey;
@@ -73,7 +68,7 @@ li p {
 .right {
 	float: right;
 	width: 80%;
-	height: 90vh;
+	height: 88vh;
 	overflow-y: scroll;
 }
 
