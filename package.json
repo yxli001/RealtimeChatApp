@@ -9,14 +9,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/yxli001/RealTimeChat.git"
+		"url": "git+https://github.com/yxli001/RealtimeChatApp.git"
 	},
 	"author": "Yixuan Li",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/yxli001/RealTimeChat/issues"
+		"url": "https://github.com/yxli001/RealtimeChatApp/issues"
 	},
-	"homepage": "https://github.com/yxli001/RealTimeChat#readme",
+	"homepage": "https://github.com/yxli001/RealtimeChatApp#readme",
 	"dependencies": {
 		"body-parser": "^1.19.0",
 		"ejs": "^3.1.5",
